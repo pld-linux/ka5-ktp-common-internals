@@ -1,14 +1,15 @@
-%define		kdeappsver	18.12.1
+%define		kdeappsver	19.04.1
+%define		kframever	5.56.0
 %define		qtver		5.9.0
 %define		kaname		ktp-common-internals
 Summary:	ktp-common-internals
 Name:		ka5-%{kaname}
-Version:	18.12.1
+Version:	19.04.1
 Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Applications
 Source0:	http://download.kde.org/stable/applications/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
-# Source0-md5:	7eb736218d2b700442fabedf29c4eb27
+# Source0-md5:	840640114c9e1683de691dab9ec0cf84
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	Qt5Network-devel >= 5.11.1
@@ -17,19 +18,20 @@ BuildRequires:	Qt5Sql-devel
 BuildRequires:	Qt5Test-devel
 BuildRequires:	cmake >= 2.8.12
 BuildRequires:	gettext-devel
-BuildRequires:	kf5-extra-cmake-modules >= 1.7.0
-BuildRequires:	kf5-kcmutils-devel >= 5.11
-BuildRequires:	kf5-kconfig-devel >= 5.11
-BuildRequires:	kf5-kcoreaddons-devel >= 5.11
-BuildRequires:	kf5-kiconthemes-devel >= 5.11
-BuildRequires:	kf5-kio-devel >= 5.11
-BuildRequires:	kf5-knotifications-devel >= 5.11
-BuildRequires:	kf5-knotifyconfig-devel >= 5.11
-BuildRequires:	kf5-kpeople-devel >= 5.11
-BuildRequires:	kf5-ktexteditor-devel >= 5.11
-BuildRequires:	kf5-kwallet-devel >= 5.11
-BuildRequires:	kf5-kwidgetsaddons-devel >= 5.11
-BuildRequires:	kf5-kwindowsystem-devel >= 5.11
+BuildRequires:	kf5-extra-cmake-modules >= %{kframever}
+BuildRequires:	kf5-kcmutils-devel >= %{kframever}
+BuildRequires:	kf5-kconfig-devel >= %{kframever}
+BuildRequires:	kf5-kcoreaddons-devel >= %{kframever}
+BuildRequires:	kf5-kiconthemes-devel >= %{kframever}
+BuildRequires:	kf5-kio-devel >= %{kframever}
+BuildRequires:	kf5-knotifications-devel >= %{kframever}
+BuildRequires:	kf5-knotifyconfig-devel >= %{kframever}
+BuildRequires:	kf5-kpeople-devel >= %{kframever}
+BuildRequires:	kf5-ktexteditor-devel >= %{kframever}
+BuildRequires:	kf5-kwallet-devel >= %{kframever}
+BuildRequires:	kf5-kwidgetsaddons-devel >= %{kframever}
+BuildRequires:	kf5-kwindowsystem-devel >= %{kframever}
+BuildRequires:	libotr-devel
 BuildRequires:	ninja
 BuildRequires:	qt5-build >= %{qtver}
 BuildRequires:	rpmbuild(macros) >= 1.164
@@ -62,6 +64,7 @@ install -d build
 cd build
 %cmake \
 	-G Ninja \
+	-DHTML_INSTALL_DIR=%{_kdedocdir} \
 	-DKDE_INSTALL_USE_QT_SYS_PATHS=ON \
 	..
 %ninja_build
@@ -81,15 +84,15 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{kaname}.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/ktp-debugger
-%attr(755,root,root) %{_libdir}/libKTpCommonInternals.so.18.*.*
+%attr(755,root,root) %{_libdir}/libKTpCommonInternals.so.19.*.*
 %attr(755,root,root) %ghost %{_libdir}/libKTpCommonInternals.so.9
-%attr(755,root,root) %{_libdir}/libKTpLogger.so.18.*.*
+%attr(755,root,root) %{_libdir}/libKTpLogger.so.19.*.*
 %attr(755,root,root) %ghost %{_libdir}/libKTpLogger.so.9
-%attr(755,root,root) %{_libdir}/libKTpModels.so.18.*.*
+%attr(755,root,root) %{_libdir}/libKTpModels.so.19.*.*
 %attr(755,root,root) %ghost %{_libdir}/libKTpModels.so.9
-%attr(755,root,root) %{_libdir}/libKTpOTR.so.18.*.*
+%attr(755,root,root) %{_libdir}/libKTpOTR.so.19.*.*
 %attr(755,root,root) %ghost %{_libdir}/libKTpOTR.so.9
-%attr(755,root,root) %{_libdir}/libKTpWidgets.so.18.*.*
+%attr(755,root,root) %{_libdir}/libKTpWidgets.so.19.*.*
 %attr(755,root,root) %ghost %{_libdir}/libKTpWidgets.so.9
 %dir %{_libdir}/qt5/plugins/kaccounts/daemonplugins
 %attr(755,root,root) %{_libdir}/qt5/plugins/kaccounts/daemonplugins/kaccounts_ktp_plugin.so
@@ -103,6 +106,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/qt5/plugins/kpeople/widgets/kpeople_chat_plugin.so
 %dir %{_libdir}/qt5/qml/org/kde/telepathy
 %attr(755,root,root) %{_libdir}/qt5/qml/org/kde/telepathy/libktpqmlplugin.so
+%attr(755,root,root) %{_prefix}/libexec/ktp-proxy
 %{_libdir}/qt5/qml/org/kde/telepathy/qmldir
 %{_iconsdir}/hicolor/128x128/apps/telepathy-kde.png
 %{_iconsdir}/hicolor/16x16/actions/im-groupwise.png
@@ -157,6 +161,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/katepart5/syntax/ktpdebugoutput.xml
 %{_datadir}/knotifications5/ktelepathy.notifyrc
 %{_datadir}/kservicetypes5/ktp_logger_plugin.desktop
+%{_datadir}/config.kcfg/ktp-proxy-config.kcfg
+%{_datadir}/dbus-1/services/org.freedesktop.Telepathy.Client.KTp.Proxy.service
+%{_datadir}/telepathy/clients/KTp.Proxy.client
 
 %files devel
 %defattr(644,root,root,755)
