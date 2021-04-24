@@ -1,15 +1,15 @@
-%define		kdeappsver	20.12.3
+%define		kdeappsver	21.04.0
 %define		kframever	5.56.0
 %define		qtver		5.9.0
 %define		kaname		ktp-common-internals
 Summary:	ktp-common-internals
 Name:		ka5-%{kaname}
-Version:	20.12.3
+Version:	21.04.0
 Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Applications
 Source0:	http://download.kde.org/stable/release-service/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
-# Source0-md5:	4cecae064c58e4015becad7b278239df
+# Source0-md5:	1c6135264d0a22949dc3d41769ec4a6f
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	Qt5Network-devel >= 5.11.1
@@ -85,15 +85,15 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/ktp-debugger
 %attr(755,root,root) %{_libdir}/libKTpCommonInternals.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libKTpCommonInternals.so.9
+%ghost %{_libdir}/libKTpCommonInternals.so.9
 %attr(755,root,root) %{_libdir}/libKTpLogger.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libKTpLogger.so.9
+%ghost %{_libdir}/libKTpLogger.so.9
 %attr(755,root,root) %{_libdir}/libKTpModels.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libKTpModels.so.9
+%ghost %{_libdir}/libKTpModels.so.9
 %attr(755,root,root) %{_libdir}/libKTpOTR.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libKTpOTR.so.9
+%ghost %{_libdir}/libKTpOTR.so.9
 %attr(755,root,root) %{_libdir}/libKTpWidgets.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libKTpWidgets.so.9
+%ghost %{_libdir}/libKTpWidgets.so.9
 %dir %{_libdir}/qt5/plugins/kaccounts/daemonplugins
 %attr(755,root,root) %{_libdir}/qt5/plugins/kaccounts/daemonplugins/kaccounts_ktp_plugin.so
 %dir %{_libdir}/qt5/plugins/kpeople/actions
@@ -169,8 +169,8 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_includedir}/KTp
 %{_libdir}/cmake/KTp
-%attr(755,root,root) %{_libdir}/libKTpCommonInternals.so
-%attr(755,root,root) %{_libdir}/libKTpLogger.so
-%attr(755,root,root) %{_libdir}/libKTpModels.so
-%attr(755,root,root) %{_libdir}/libKTpOTR.so
-%attr(755,root,root) %{_libdir}/libKTpWidgets.so
+%{_libdir}/libKTpCommonInternals.so
+%{_libdir}/libKTpLogger.so
+%{_libdir}/libKTpModels.so
+%{_libdir}/libKTpOTR.so
+%{_libdir}/libKTpWidgets.so
