@@ -1,15 +1,15 @@
-%define		kdeappsver	21.04.2
+%define		kdeappsver	21.04.3
 %define		kframever	5.56.0
 %define		qtver		5.9.0
 %define		kaname		ktp-common-internals
 Summary:	ktp-common-internals
 Name:		ka5-%{kaname}
-Version:	21.04.2
+Version:	21.04.3
 Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Applications
 Source0:	http://download.kde.org/stable/release-service/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
-# Source0-md5:	d1d1284d03bc123f2ace2ef47bfff1c3
+# Source0-md5:	8d98eba307b1d2a091d5df192822e186
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	Qt5Network-devel >= 5.11.1
